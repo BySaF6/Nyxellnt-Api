@@ -1,0 +1,43 @@
+[
+  {
+    "idUsuario": 1,
+    "nombre": "Admin",
+    "apellido": "Admin",
+    "email": "Admin",
+    "password": "Admin",
+    "eventosComprados": [
+      {
+        "idOperacion": 1,
+        "eventoComprado": {
+          "idEvento": 2,
+          "nombre": "20 A\u00F1os de L\u00E1grimas Negras",
+          "cantante": "Diego el Cigala",
+          "descripcion": "Diego El Cigala, celebrar\u00E1 el vig\u00E9simo aniversario de su disco que grab\u00F3 junto al pianista cubano Bebo Vald\u00E9s. Un \u00E1lbum que ha vendido m\u00E1s de dos millones de copias y que ha contado con la colaboraci\u00F3n de artistas de la talla de Alicia Keys, Alejandro Fern\u00E1ndez, Chavela Vargas, Ricky Mart\u00EDn y Lila Downs entre muchos otros. Esta gira aniversario comienza el 13 de octubre en Dallas (Texas) y le llevar\u00E1 a recorrer 10 ciudades de Estados Unidos, para posteriormente aterrizar en Espa\u00F1a.",
+          "localidad": "Madrid",
+          "fecha": "2022-12-19",
+          "precioEntrada": 60,
+          "stock": 98,
+          "categoria": "Flamenco"
+        },
+        "numEntradasCompradas": 2,
+        "precioTotal": 120
+      },
+      {
+        "idOperacion": 2,
+        "eventoComprado": {
+          "idEvento": 5,
+          "nombre": "Sesi\u00F3n de \u00D3pera",
+          "cantante": "Andrea Bocelli",
+          "descripcion": "Andrea Bocelli ofrecer\u00E1 un concierto en el WiZink Center de Madrid el pr\u00F3ximo 20 de septiembre de 2023. Ser\u00E1 su \u00FAnico concierto en Espa\u00F1a y contar\u00E1 con un repertorio y escenograf\u00EDa \u00FAnicos con colaboraci\u00F3n de invitados especiales.",
+          "localidad": "Wizink Center de Madrid",
+          "fecha": "2023-9-20",
+          "precioEntrada": 45,
+          "stock": 99,
+          "categoria": "Opera"
+        },
+        "numEntradasCompradas": 1,
+        "precioTotal": 45
+      }
+    ]
+  }
+]
