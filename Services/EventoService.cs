@@ -5,9 +5,40 @@ public class EventoService : EventoServiceInterface
     {
         _eventoEntity = eventoEntity;
     }
+
+    static List<EventoEntity> Eventos { get; }
+    static int nextId = 7;
+
+    public static List<EventoEntity> GetAll() => Eventos;
+
+    public static EventoEntity? Get(int id) => Eventos.FirstOrDefault(p => p.idEvento == id);
+
+    public static void Add(EventoEntity evento)
+    {
+        evento.idEvento = nextId++;
+        Eventos.Add(evento);
+    }
+
+    public static void Delete(int id)
+    {
+        var evento = Get(id);
+        if (evento is null)
+            return;
+
+        Eventos.Remove(evento);
+    }
+
+    public static void Update(EventoEntity evento)
+    {
+        var index = Eventos.FindIndex(p => p.idEvento == evento.idEvento);
+        if (index == -1)
+            return;
+
+        Eventos[index] = evento;
+    }
     public void listarEventoExtendido()
     {
-        Console.WriteLine("[bold #13D7F6]Evento: [/][bold white]" + _eventoEntity.nombre + "[/]");
+        Console.WriteLine("[bold #13D7F6]EventoEntity: [/][bold white]" + _eventoEntity.nombre + "[/]");
         Console.WriteLine("[bold #13D7F6]Arista: [/][bold white]" + _eventoEntity.cantante + "[/]");
         Console.WriteLine("[bold #13D7F6]\nDescripción:[/]");
         Console.WriteLine("[bold white]" + _eventoEntity.descripcion + "[/]");
