@@ -1,7 +1,10 @@
-using System;
 
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+[Table("Operaciones")]
 public class OperacionEntity
 {
+    [Key]
     public int idOperacion { get; set; }
     public static int operationNumber = 1;
     public EventoEntity eventoComprado { get; set; }
