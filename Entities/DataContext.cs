@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace NyxellntDB.Entities
+namespace NyxellntAPI.Entities
 {
-    class NyxellntDb : DbContext
+    public class NyxellntDb : DbContext
     {
         public NyxellntDb(DbContextOptions options) : base(options) { }
         public DbSet<EventoEntity> Eventos { get; set; } = null!;

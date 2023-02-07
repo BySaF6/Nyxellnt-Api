@@ -1,28 +1,28 @@
-
+using NyxellntAPI.Entities;
 using Microsoft.AspNetCore.Mvc;
 
-namespace pruebaApi01.Controllers
+namespace NyxellntAPI.Controllers
 {
 
     [ApiController]
     [Route("[controller]")]
     public class EventoController : ControllerBase
     {
-        public EventoController()
+        private readonly NyxellntDb _context;
+        public EventoController(NyxellntDb context)
         {
+            _context = context;
         }
 
         // GET all action
         [HttpGet]
-        public ActionResult<List<EventoEntity>> GetAll() => EventoService.GetAll();
+        public List<EventoEntity> GetAll() => _context.Eventos.ToList();
 
         // GET by Id action
         [HttpGet("{id}")]
-        public ActionResult<EventoEntity> Get(int id)
+        public List<EventoEntity> Get(int id)
         {
-            var evento = EventoService.Get(id);
-            if (evento == null)
-                return NotFound();
+            var evento = _context.Eventos.
 
             return evento;
         }

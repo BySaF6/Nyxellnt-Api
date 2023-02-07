@@ -1,4 +1,4 @@
-using NyxellntDB.Entities;
+using NyxellntAPI.Entities;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

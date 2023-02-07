@@ -5,6 +5,37 @@ public class OperacionService : OperacionServiceInterface
     {
         _operacionEntity = operacionEntity;
     }
+
+    static List<OperacionEntity> Operaciones { get; }
+    static int nextId = 1;
+
+    public static List<OperacionEntity> GetAll() => Operaciones;
+
+    public static OperacionEntity? Get(int id) => Operaciones.FirstOrDefault(p => p.idOperacion == id);
+
+    public static void Add(OperacionEntity operacion)
+    {
+        operacion.idOperacion = nextId++;
+        Operaciones.Add(operacion);
+    }
+
+    public static void Delete(int id)
+    {
+        var operacion = Get(id);
+        if (operacion is null)
+            return;
+
+        Operaciones.Remove(operacion);
+    }
+
+    public static void Update(OperacionEntity operacion)
+    {
+        var index = Operaciones.FindIndex(p => p.idOperacion == operacion.idOperacion);
+        if (index == -1)
+            return;
+
+        Operaciones[index] = operacion;
+    }
     public void mostrarOperacion()
     {
         Console.WriteLine("[bold #13D7F6]Id de la operación: [/][bold white]" + _operacionEntity.idOperacion + "[/]");
