@@ -1,50 +1,53 @@
+using NyxellntAPI.Entities;
 public class UsuarioService : UsuarioServiceInterface
 {
-    private readonly UsuarioEntity _usuarioEntity;
-    public UsuarioService(UsuarioEntity usuarioEntity)
+    private readonly NyxellntDb _context;
+    public UsuarioService(NyxellntDb context)
     {
-        _usuarioEntity = usuarioEntity;
+        _context = context;
     }
 
-    static List<UsuarioEntity> usuarioEntityList { get; }
-    static int nextId = 2;
+    // static List<UsuarioEntity> usuarioEntityList { get; }
+    // static int nextId = 2;
 
-    public static List<UsuarioEntity> GetAll() => usuarioEntityList;
+    public List<UsuarioEntity> GetAll() => _context.Usuarios.ToList();
 
-    public static UsuarioEntity? Get(int id) => usuarioEntityList.FirstOrDefault(p => p.idUsuario == id);
+    public UsuarioEntity Get(int id) => _context.Usuarios.ToList().FirstOrDefault(p => p.idUsuario == id);
 
-    public static void Add(UsuarioEntity usuario)
+    public void Add(UsuarioEntity usuario)
     {
-        usuario.idUsuario = nextId++;
-        usuarioEntityList.Add(usuario);
+        // usuario.idUsuario = nextId++;
+        _context.Usuarios.Add(usuario);
+        _context.SaveChanges();
     }
 
-    public static void Delete(int id)
+    public void Delete(int id)
     {
         var usuario = Get(id);
         if (usuario is null)
             return;
 
-        usuarioEntityList.Remove(usuario);
+        _context.Remove(usuario);
+        _context.SaveChanges();
     }
 
-    public static void Update(UsuarioEntity usuario)
-    {
-        var index = usuarioEntityList.FindIndex(p => p.idUsuario == usuario.idUsuario);
-        if (index == -1)
-            return;
+    // public void Update(UsuarioEntity usuario)
+    // {
+    //     var index = _context.FindIndex(p => p.idUsuario == usuario.idUsuario);
+    //     if (index == -1)
+    //         return;
 
-        usuarioEntityList[index] = usuario;
-    }
+    //     _context[index] = usuario;
+    // }
 
-    public void listarInformacionUsuario()
-    {
-        Console.WriteLine("[bold #13D7F6]Id: [/][bold white]" + _usuarioEntity.idUsuario + "[/]");
-        Console.WriteLine("[bold #13D7F6]Nombre: [/][bold white]" + _usuarioEntity.nombre + "[/]");
-        Console.WriteLine("[bold #13D7F6]Apellido: [/][bold white]" + _usuarioEntity.apellido + "[/]");
-        Console.WriteLine("[bold #13D7F6]Email: [/][bold white]" + _usuarioEntity.email + "[/]");
-        Console.WriteLine("[bold #13D7F6]Contraseña: [/][bold white]*********[/]");
-    }
+    // public void listarInformacionUsuario()
+    // {
+    //     Console.WriteLine("[bold #13D7F6]Id: [/][bold white]" + _usuarioEntity.idUsuario + "[/]");
+    //     Console.WriteLine("[bold #13D7F6]Nombre: [/][bold white]" + _usuarioEntity.nombre + "[/]");
+    //     Console.WriteLine("[bold #13D7F6]Apellido: [/][bold white]" + _usuarioEntity.apellido + "[/]");
+    //     Console.WriteLine("[bold #13D7F6]Email: [/][bold white]" + _usuarioEntity.email + "[/]");
+    //     Console.WriteLine("[bold #13D7F6]Contraseña: [/][bold white]*********[/]");
+    // }
 
     // public UsuarioEntity GetUsuarioEntityById(int idUsuario){
     //     return ;

@@ -1,3 +1,6 @@
 public interface OperacionServiceInterface{
-    public void mostrarOperacion();
+    public List<OperacionEntity> GetAll();
+    public OperacionEntity Get(int id);
+    public void Add(OperacionEntity operacion);
+    public void Delete(int id);
 }

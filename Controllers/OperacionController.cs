@@ -7,19 +7,21 @@ namespace pruebaApi01.Controllers
     [Route("[controller]")]
     public class OperacionController : ControllerBase
     {
-        public OperacionController()
+        private readonly OperacionServiceInterface _operacion;
+        public OperacionController(OperacionServiceInterface operacion)
         {
+            _operacion = operacion;
         }
 
         // GET all action
         [HttpGet]
-        public ActionResult<List<OperacionEntity>> GetAll() => OperacionService.GetAll();
+        public List<OperacionEntity> GetAll() => _operacion.GetAll();
 
         // GET by Id action
         [HttpGet("{id}")]
         public ActionResult<OperacionEntity> Get(int id)
         {
-            var evento = OperacionService.Get(id);
+            var evento = _operacion.Get(id);
             if (evento == null)
                 return NotFound();
 
@@ -28,38 +30,40 @@ namespace pruebaApi01.Controllers
 
         // POST action
         [HttpPost]
-        public IActionResult Create(OperacionEntity operacionEntity)
+        public ActionResult Create(OperacionEntity operacionEntity)
         {
-            OperacionService.Add(operacionEntity);
+            _operacion.Add(operacionEntity);
             return CreatedAtAction(nameof(Get), new { id = operacionEntity.idOperacion }, operacionEntity);
         }
 
-        // PUT action
-        [HttpPut("{id}")]
-        public IActionResult Update(int id, OperacionEntity operacionEntity)
-        {
-            if (id != operacionEntity.idOperacion)
-                return BadRequest();
-
-            var existingEvento = OperacionService.Get(id);
-            if (existingEvento is null)
-                return NotFound();
-
-            OperacionService.Update(operacionEntity);
-            return NoContent();
-        }
-
-        // DELETE action
+        //     // DELETE action
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var operacionEntity = OperacionService.Get(id);
+            var operacionEntity = _operacion.Get(id);
 
             if (operacionEntity is null)
                 return NotFound();
 
-            OperacionService.Delete(id);
+            _operacion.Delete(id);
             return NoContent();
         }
+
+        //     // PUT action
+        //     [HttpPut("{id}")]
+        //     public IActionResult Update(int id, OperacionEntity operacionEntity)
+        //     {
+        //         if (id != operacionEntity.idOperacion)
+        //             return BadRequest();
+
+        //         var existingEvento = OperacionService.Get(id);
+        //         if (existingEvento is null)
+        //             return NotFound();
+
+        //         OperacionService.Update(operacionEntity);
+        //         return NoContent();
+        //     }
+
+
     }
 }

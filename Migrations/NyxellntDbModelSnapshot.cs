@@ -31,27 +31,21 @@ namespace NyxellntAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idEvento"));
 
                     b.Property<string>("cantante")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("categoria")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("descripcion")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("fecha")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("localidad")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("nombre")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("precioEntrada")
@@ -76,8 +70,11 @@ namespace NyxellntAPI.Migrations
                     b.Property<int?>("UsuarioEntityidUsuario")
                         .HasColumnType("int");
 
-                    b.Property<int>("eventoCompradoidEvento")
+                    b.Property<int?>("eventoCompradoidEvento")
                         .HasColumnType("int");
+
+                    b.Property<string>("fechaCompra")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("numEntradasCompradas")
                         .HasColumnType("int");
@@ -103,19 +100,15 @@ namespace NyxellntAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idUsuario"));
 
                     b.Property<string>("apellido")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("nombre")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("password")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("idUsuario");
@@ -131,9 +124,7 @@ namespace NyxellntAPI.Migrations
 
                     b.HasOne("EventoEntity", "eventoComprado")
                         .WithMany()
-                        .HasForeignKey("eventoCompradoidEvento")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("eventoCompradoidEvento");
 
                     b.Navigation("eventoComprado");
                 });

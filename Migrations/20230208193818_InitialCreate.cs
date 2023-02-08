@@ -16,14 +16,14 @@ namespace NyxellntAPI.Migrations
                 {
                     idEvento = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    cantante = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    localidad = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    fecha = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    nombre = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    cantante = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    descripcion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    localidad = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    fecha = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     precioEntrada = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     stock = table.Column<int>(type: "int", nullable: false),
-                    categoria = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    categoria = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -36,10 +36,10 @@ namespace NyxellntAPI.Migrations
                 {
                     idUsuario = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    apellido = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    nombre = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    apellido = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    password = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -52,9 +52,10 @@ namespace NyxellntAPI.Migrations
                 {
                     idOperacion = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    eventoCompradoidEvento = table.Column<int>(type: "int", nullable: false),
+                    eventoCompradoidEvento = table.Column<int>(type: "int", nullable: true),
                     numEntradasCompradas = table.Column<int>(type: "int", nullable: false),
                     precioTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    fechaCompra = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UsuarioEntityidUsuario = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -64,8 +65,7 @@ namespace NyxellntAPI.Migrations
                         name: "FK_Operaciones_Eventos_eventoCompradoidEvento",
                         column: x => x.eventoCompradoidEvento,
                         principalTable: "Eventos",
-                        principalColumn: "idEvento",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "idEvento");
                     table.ForeignKey(
                         name: "FK_Operaciones_Usuarios_UsuarioEntityidUsuario",
                         column: x => x.UsuarioEntityidUsuario,

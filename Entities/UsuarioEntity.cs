@@ -5,7 +5,6 @@ public class UsuarioEntity
 {
     [Key]
     public int idUsuario { get; set; }
-    public static int accountNumber = 1;
     public string nombre { get; set; }
     public string apellido { get; set; }
     public string email { get; set; }
