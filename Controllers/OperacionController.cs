@@ -36,7 +36,7 @@ namespace pruebaApi01.Controllers
             return CreatedAtAction(nameof(Get), new { id = operacionEntity.idOperacion }, operacionEntity);
         }
 
-        //     // DELETE action
+        // DELETE action
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
@@ -49,20 +49,13 @@ namespace pruebaApi01.Controllers
             return NoContent();
         }
 
-        //     // PUT action
-        //     [HttpPut("{id}")]
-        //     public IActionResult Update(int id, OperacionEntity operacionEntity)
-        //     {
-        //         if (id != operacionEntity.idOperacion)
-        //             return BadRequest();
-
-        //         var existingEvento = OperacionService.Get(id);
-        //         if (existingEvento is null)
-        //             return NotFound();
-
-        //         OperacionService.Update(operacionEntity);
-        //         return NoContent();
-        //     }
+        // PUT action
+        [HttpPut("{id}")]
+        public IActionResult Update(OperacionEntity operacionEntity)
+        {
+            _operacion.Update(operacionEntity);
+            return NoContent();
+        }
 
 
     }

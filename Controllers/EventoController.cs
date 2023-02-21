@@ -37,7 +37,7 @@ namespace NyxellntAPI.Controllers
             return CreatedAtAction(nameof(Get), new { id = eventoEntity.idEvento }, eventoEntity);
         }
 
-        // // DELETE action
+        // DELETE action
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
@@ -50,21 +50,12 @@ namespace NyxellntAPI.Controllers
             return NoContent();
         }
 
-        // // PUT action
-        // [HttpPut("{id}")]
-        // public IActionResult Update(int id, EventoEntity eventoEntity)
-        // {
-        //     if (id != eventoEntity.idEvento)
-        //         return BadRequest();
-
-        //     var existingEvento = EventoService.Get(id);
-        //     if (existingEvento is null)
-        //         return NotFound();
-
-        //     EventoService.Update(eventoEntity);
-        //     return NoContent();
-        // }
-
-        
+        // PUT action
+        [HttpPut("{id}")]
+        public IActionResult Update(EventoEntity eventoEntity)
+        {
+            _evento.Update(eventoEntity);
+            return NoContent();
+        }
     }
 }

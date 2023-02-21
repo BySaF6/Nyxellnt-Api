@@ -31,14 +31,11 @@ public class OperacionService : OperacionServiceInterface
         _context.SaveChanges();
     }
 
-    // public static void Update(OperacionEntity operacion)
-    // {
-    //     var index = Operaciones.FindIndex(p => p.idOperacion == operacion.idOperacion);
-    //     if (index == -1)
-    //         return;
-
-    //     Operaciones[index] = operacion;
-    // }
+    public void Update(OperacionEntity operacionEntity)
+    {
+        _context.Update(operacionEntity);
+        _context.SaveChanges();
+    }
     // public void mostrarOperacion()
     // {
     //     Console.WriteLine("[bold #13D7F6]Id de la operación: [/][bold white]" + _operacionEntity.idOperacion + "[/]");

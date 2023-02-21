@@ -31,14 +31,11 @@ public class UsuarioService : UsuarioServiceInterface
         _context.SaveChanges();
     }
 
-    // public void Update(UsuarioEntity usuario)
-    // {
-    //     var index = _context.FindIndex(p => p.idUsuario == usuario.idUsuario);
-    //     if (index == -1)
-    //         return;
-
-    //     _context[index] = usuario;
-    // }
+    public void Update(UsuarioEntity usuarioEntity)
+    {
+        _context.Update(usuarioEntity);
+        _context.SaveChanges();
+    }
 
     // public void listarInformacionUsuario()
     // {

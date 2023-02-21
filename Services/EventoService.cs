@@ -38,14 +38,11 @@ public class EventoService : EventoServiceInterface
         _context.SaveChanges();
     }
 
-    // public static void Update(EventoEntity evento)
-    // {
-    //     var index = Eventos.FindIndex(p => p.idEvento == evento.idEvento);
-    //     if (index == -1)
-    //         return;
-
-    //     Eventos[index] = evento;
-    // }
+    public void Update(EventoEntity eventoEntity)
+    {
+        _context.Update(eventoEntity);
+        _context.SaveChanges();
+    }
 
     // public void listarEventoExtendido()
     // {

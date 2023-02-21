@@ -51,6 +51,14 @@ namespace pruebaApi01.Controllers
         }
 
         // // // PUT action
+        // PUT action
+        [HttpPut("{id}")]
+        public IActionResult Update(UsuarioEntity usuarioEntity)
+        {
+            _usuario.Update(usuarioEntity);
+            return NoContent();
+        }
+        
         // [HttpPut("{id}")]
         // public ActionResult Update(int id, UsuarioEntity usuario)
         // {
