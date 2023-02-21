@@ -12,7 +12,7 @@ using NyxellntAPI.Entities;
 namespace NyxellntAPI.Migrations
 {
     [DbContext(typeof(NyxellntDb))]
-    [Migration("20230208193818_InitialCreate")]
+    [Migration("20230221160729_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
