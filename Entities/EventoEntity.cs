@@ -1,6 +1,10 @@
 
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+[Table("Eventos")]
 public class EventoEntity
 {
+    [Key]
     public int idEvento { get; set; }
     public string nombre { get; set; }
     public string cantante { get; set; }

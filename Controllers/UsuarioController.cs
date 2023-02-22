@@ -8,59 +8,69 @@ namespace pruebaApi01.Controllers
     [Route("[controller]")]
     public class UsuarioController : ControllerBase
     {
-        public UsuarioController()
+        private readonly UsuarioServiceInterface _usuario;
+        public UsuarioController(UsuarioServiceInterface usuario)
         {
+            _usuario = usuario;
         }
 
         // GET all action
         [HttpGet]
-        public ActionResult<List<UsuarioEntity>> GetAll() => UsuarioService.GetAll();
+        public List<UsuarioEntity> GetAll() => _usuario.GetAll();
 
         // GET by Id action
         [HttpGet("{id}")]
         public ActionResult<UsuarioEntity> Get(int id)
         {
-            var usuario = UsuarioService.Get(id);
+            var usuario = _usuario.Get(id);
             if (usuario == null)
                 return NotFound();
 
             return usuario;
         }
 
-        // POST action
+        // // POST action
         [HttpPost]
-        public IActionResult Create(UsuarioEntity usuario)
+        public ActionResult Create(UsuarioEntity usuario)
         {
-            UsuarioService.Add(usuario);
+            _usuario.Add(usuario);
             return CreatedAtAction(nameof(Get), new { id = usuario.idUsuario }, usuario);
         }
 
-        // PUT action
-        [HttpPut("{id}")]
-        public IActionResult Update(int id, UsuarioEntity usuario)
-        {
-            if (id != usuario.idUsuario)
-                return BadRequest();
-
-            var existingUsuario = UsuarioService.Get(id);
-            if (existingUsuario is null)
-                return NotFound();
-
-            UsuarioService.Update(usuario);
-            return NoContent();
-        }
-
-        // DELETE action
+        // // DELETE action
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var usuario = UsuarioService.Get(id);
+            var usuario = _usuario.Get(id);
 
             if (usuario is null)
                 return NotFound();
 
-            UsuarioService.Delete(id);
+            _usuario.Delete(id);
             return NoContent();
         }
+
+        // // // PUT action
+        // PUT action
+        [HttpPut("{id}")]
+        public IActionResult Update(UsuarioEntity usuarioEntity)
+        {
+            _usuario.Update(usuarioEntity);
+            return NoContent();
+        }
+        
+        // [HttpPut("{id}")]
+        // public ActionResult Update(int id, UsuarioEntity usuario)
+        // {
+        //     if (id != usuario.idUsuario)
+        //         return BadRequest();
+
+        //     var existingUsuario = _usuario.Get(id);
+        //     if (existingUsuario is null)
+        //         return NotFound();
+
+        //     _usuario.Update(usuario);
+        //     return NoContent();
+        // }
     }
 }
