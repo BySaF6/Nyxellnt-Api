@@ -6,9 +6,9 @@ public class OperacionEntity
 {
     [Key]
     public int idOperacion { get; set; }
-    public EventoEntity eventoComprado { get; set; }
+    public string idEvento { get; set; }
+    public string idUsuario {get; set; }
     public int numEntradasCompradas { get; set; }
     public decimal precioTotal { get; set; }
     public string fechaCompra { get; set; } = DateTime.Now.ToString("dd-MM-yyyy"); 
-
 }

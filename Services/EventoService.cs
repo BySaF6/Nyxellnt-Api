@@ -7,9 +7,6 @@ public class EventoService : EventoServiceInterface
         _context = context;
     }
 
-    // public static List<EventoEntity> Eventos { get; }
-    // static int nextId = 6;
-
     public List<EventoEntity> GetAll()
     {
         return _context.Eventos.ToList();
@@ -23,8 +20,7 @@ public class EventoService : EventoServiceInterface
 
     public void Add(EventoEntity evento)
     {
-        // evento.idEvento = nextId++;
-        _context.Eventos.Add(evento);
+        _context.Add(evento);
         _context.SaveChanges();
     }
 
