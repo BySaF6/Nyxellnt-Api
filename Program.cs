@@ -20,7 +20,7 @@ builder.Services.AddTransient<OperacionServiceInterface, OperacionService>();
 builder.Services.AddTransient<UsuarioServiceInterface, UsuarioService>();
 
 var app = builder.Build();
-
+/*
 static void configure(IApplicationBuilder app, IWebHostEnvironment env)
 {
     using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
@@ -29,7 +29,7 @@ static void configure(IApplicationBuilder app, IWebHostEnvironment env)
         context.Database.Migrate();
     }
 }
-
+*/
 // Configure the HTTP request pipeline.
 app.UseSwagger();
 app.UseSwaggerUI();
