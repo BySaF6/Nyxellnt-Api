@@ -20,10 +20,19 @@ builder.Services.AddTransient<OperacionServiceInterface, OperacionService>();
 builder.Services.AddTransient<UsuarioServiceInterface, UsuarioService>();
 
 var app = builder.Build();
-
+/*
+static void configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+    using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+    {
+        var context = serviceScope.ServiceProvider.GetRequiredService<NyxellntDb>();
+        context.Database.Migrate();
+    }
+}
+*/
 // Configure the HTTP request pipeline.
-    app.UseSwagger();
-    app.UseSwaggerUI();
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
@@ -32,3 +41,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
