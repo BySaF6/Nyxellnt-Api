@@ -17,6 +17,7 @@ namespace NyxellntAPI.Controllers
         // GET all action
         [HttpGet]
         public List<EventoEntity> GetAll() => _evento.GetAll();
+        //public List<EventoEntity> GetAll([FromQuery] int precio = 0, string name) => _evento.GetAll();
 
         // GET by Id action
         [HttpGet("{id}")]
