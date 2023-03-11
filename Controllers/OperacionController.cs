@@ -17,6 +17,17 @@ namespace pruebaApi01.Controllers
         [HttpGet]
         public List<OperacionEntity> GetAll() => _operacion.GetAll();
 
+        //Ordenar por fecha de compra ascendente o descendente
+        [HttpGet("ordenarFecha/{ascendente}")]
+        public List<OperacionEntity> GetAll(Boolean ascendente) {
+            var operaciones = _operacion.GetAll();
+            if(ascendente == true){
+                return operaciones.OrderBy(f => DateTime.Parse(f.fechaCompra)).ToList(); 
+            } else {
+                return operaciones.OrderByDescending(f => DateTime.Parse(f.fechaCompra)).ToList();
+            }
+        }
+        
         // GET by Id action
         [HttpGet("{id}")]
         public ActionResult<OperacionEntity> Get(int id)
