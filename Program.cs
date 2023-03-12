@@ -21,17 +21,17 @@ builder.Services.AddTransient<UsuarioServiceInterface, UsuarioService>();
 
 var app = builder.Build();
 
-builder.Services.AddCors(options =>
-            {
-                options.AddPolicy(name: "frontend",
-                    policy =>
-                    {
-                        policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
-                    });
-            });
-builder.Services.AddMvc().AddMvcOptions(e => e.EnableEndpointRouting = false);
+// builder.Services.AddCors(options =>
+//             {
+//                 options.AddPolicy(name: "frontend",
+//                     policy =>
+//                     {
+//                         policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+//                     });
+//             });
+// builder.Services.AddMvc().AddMvcOptions(e => e.EnableEndpointRouting = false);
 
-app.UseCors("frontend");
+// app.UseCors("frontend");
 
 /*
 static void configure(IApplicationBuilder app, IWebHostEnvironment env)
