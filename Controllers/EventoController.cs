@@ -20,30 +20,39 @@ namespace NyxellntAPI.Controllers
 
         //Filtrar por genero
         [HttpGet("genero/{genero}")]
-        public List<EventoEntity> GetAll(string genero) {
+        public List<EventoEntity> GetAll(string genero)
+        {
             var evento = _evento.GetAll();
             return evento.Where(item => item.categoria.ToLower().Equals(genero.ToLower())).ToList();
         }
 
         //Ordenar por precio ascendente o descendente
         [HttpGet("ordenarPrecio/{ascendente}")]
-        public List<EventoEntity> GetAll(Boolean ascendente) {
+        public List<EventoEntity> GetAll(Boolean ascendente)
+        {
             var evento = _evento.GetAll();
-            if(ascendente == true){
+            if (ascendente == true)
+            {
                 return evento.OrderBy(item => item.precioEntrada).ToList();
-            } else {
+            }
+            else
+            {
                 return evento.OrderByDescending(item => item.precioEntrada).ToList();
             }
         }
 
         //Ordenar por genero y precio
         [HttpGet("genero/{genero}/precio/{ascendente}")]
-        public List<EventoEntity> GetAll(string genero, Boolean ascendente) {
+        public List<EventoEntity> GetAll(string genero, Boolean ascendente)
+        {
             var evento = _evento.GetAll();
             evento = evento.Where(item => item.categoria.ToLower().Equals(genero.ToLower())).ToList();
-            if(ascendente == true){
+            if (ascendente == true)
+            {
                 return evento.OrderBy(item => item.precioEntrada).ToList();
-            } else {
+            }
+            else
+            {
                 return evento.OrderByDescending(item => item.precioEntrada).ToList();
             }
         }

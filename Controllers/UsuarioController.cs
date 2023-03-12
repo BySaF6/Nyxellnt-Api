@@ -58,7 +58,7 @@ namespace pruebaApi01.Controllers
             _usuario.Update(usuarioEntity);
             return NoContent();
         }
-        
+
         // [HttpPut("{id}")]
         // public ActionResult Update(int id, UsuarioEntity usuario)
         // {

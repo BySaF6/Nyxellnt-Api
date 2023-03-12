@@ -20,7 +20,7 @@ builder.Services.AddTransient<OperacionServiceInterface, OperacionService>();
 builder.Services.AddTransient<UsuarioServiceInterface, UsuarioService>();
 
 
-
+//CORS
 builder.Services.AddCors(options =>
             {
                 options.AddPolicy(name: "frontend",
