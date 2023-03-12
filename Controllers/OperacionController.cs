@@ -18,9 +18,10 @@ namespace pruebaApi01.Controllers
         public List<OperacionEntity> GetAll() => _operacion.GetAll();
 
         //Ordenar por fecha de compra ascendente o descendente
-        [HttpGet("ordenarFecha/{ascendente}")]
-        public List<OperacionEntity> GetAll(Boolean ascendente) {
+        [HttpGet("idUsuario/{idUsuario}/ordenarFecha/{ascendente}")]
+        public List<OperacionEntity> GetAll(int idUsuario, Boolean ascendente) {
             var operaciones = _operacion.GetAll();
+            operaciones = operaciones.Where(item => item.idUsuario == idUsuario).ToList();
             if(ascendente == true){
                 return operaciones.OrderBy(f => DateTime.Parse(f.fechaCompra)).ToList(); 
             } else {
@@ -28,15 +29,21 @@ namespace pruebaApi01.Controllers
             }
         }
         
+        [HttpGet("idUsuario/{idUsuario}")]
+        public List<OperacionEntity> GetAll(int idUsuario) {
+            var operaciones = _operacion.GetAll();
+            return operaciones.Where(item => item.idUsuario == idUsuario).ToList();
+        }
+        
         // GET by Id action
         [HttpGet("{id}")]
         public ActionResult<OperacionEntity> Get(int id)
         {
-            var evento = _operacion.Get(id);
-            if (evento == null)
+            var operacion = _operacion.Get(id);
+            if (operacion == null)
                 return NotFound();
 
-            return evento;
+            return operacion;
         }
 
         // POST action
