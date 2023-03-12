@@ -19,19 +19,20 @@ builder.Services.AddTransient<OperacionServiceInterface, OperacionService>();
 //Usuario
 builder.Services.AddTransient<UsuarioServiceInterface, UsuarioService>();
 
+
+
+builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: "frontend",
+                    policy =>
+                    {
+                        policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                    });
+            });
+builder.Services.AddMvc().AddMvcOptions(e => e.EnableEndpointRouting = false);
 var app = builder.Build();
 
-// builder.Services.AddCors(options =>
-//             {
-//                 options.AddPolicy(name: "frontend",
-//                     policy =>
-//                     {
-//                         policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
-//                     });
-//             });
-// builder.Services.AddMvc().AddMvcOptions(e => e.EnableEndpointRouting = false);
-
-// app.UseCors("frontend");
+app.UseCors("frontend");
 
 /*
 static void configure(IApplicationBuilder app, IWebHostEnvironment env)
