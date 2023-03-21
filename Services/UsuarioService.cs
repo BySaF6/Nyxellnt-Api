@@ -1,23 +1,36 @@
+using NyxellntAPI.Entities;
 public class UsuarioService : UsuarioServiceInterface
 {
-    private readonly UsuarioEntity _usuarioEntity;
-    public UsuarioService(UsuarioEntity usuarioEntity)
+    private readonly NyxellntDb _context;
+    public UsuarioService(NyxellntDb context)
     {
-        _usuarioEntity = usuarioEntity;
-    }
-    public void listarInformacionUsuario()
-    {
-        Console.WriteLine("[bold #13D7F6]Id: [/][bold white]" + _usuarioEntity.idUsuario + "[/]");
-        Console.WriteLine("[bold #13D7F6]Nombre: [/][bold white]" + _usuarioEntity.nombre + "[/]");
-        Console.WriteLine("[bold #13D7F6]Apellido: [/][bold white]" + _usuarioEntity.apellido + "[/]");
-        Console.WriteLine("[bold #13D7F6]Email: [/][bold white]" + _usuarioEntity.email + "[/]");
-        Console.WriteLine("[bold #13D7F6]Contraseña: [/][bold white]*********[/]");
+        _context = context;
     }
 
-    public UsuarioEntity GetUsuarioEntityById(int idUsuario){
-        return ;
+    public List<UsuarioEntity> GetAll() => _context.Usuarios.ToList();
+
+    public UsuarioEntity Get(int id) => _context.Usuarios.ToList().FirstOrDefault(p => p.idUsuario == id);
+
+    public void Add(UsuarioEntity usuario)
+    {
+        _context.Usuarios.Add(usuario);
+        _context.SaveChanges();
     }
 
-    public List<>
+    public void Delete(int id)
+    {
+        var usuario = Get(id);
+        if (usuario is null)
+            return;
+
+        _context.Remove(usuario);
+        _context.SaveChanges();
+    }
+
+    public void Update(UsuarioEntity usuarioEntity)
+    {
+        _context.Update(usuarioEntity);
+        _context.SaveChanges();
+    }
 }
 
