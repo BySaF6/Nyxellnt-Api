@@ -27,7 +27,7 @@ namespace NyxellntAPI.Controllers
         }
 
         //Ordenar por precio ascendente o descendente
-        [HttpGet("ordenarPrecio/{ascendente}")]
+        [HttpGet("ordenaPrecio/{ascendente}")]
         public List<EventoEntity> GetAll(Boolean ascendente)
         {
             var evento = _evento.GetAll();
