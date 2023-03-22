@@ -14,47 +14,25 @@ namespace NyxellntAPI.Controllers
             _evento = evento;
         }
 
-        // GET all action
+        // GET todos y por filtro
         [HttpGet]
-        public List<EventoEntity> GetAll() => _evento.GetAll();
-
-        //Filtrar por genero
-        [HttpGet("genero/{genero}")]
-        public List<EventoEntity> GetAll(string genero)
+        public List<EventoEntity> GetAll([FromQuery] string genero, [FromQuery] string ordenarPrecio)
         {
             var evento = _evento.GetAll();
-            return evento.Where(item => item.categoria.ToLower().Equals(genero.ToLower())).ToList();
-        }
-
-        //Ordenar por precio ascendente o descendente
-        [HttpGet("ordenaPrecio/{ascendente}")]
-        public List<EventoEntity> GetAll(Boolean ascendente)
-        {
-            var evento = _evento.GetAll();
-            if (ascendente == true)
-            {
-                return evento.OrderBy(item => item.precioEntrada).ToList();
+            if(genero != null){
+                evento = evento.Where(item => item.categoria.ToLower().Equals(genero.ToLower())).ToList();
             }
-            else
-            {
-                return evento.OrderByDescending(item => item.precioEntrada).ToList();
+            if(ordenarPrecio != null){
+                if(ordenarPrecio.ToLower().Equals("asc"))
+                {
+                    evento = evento.OrderBy(item => item.precioEntrada).ToList();
+                }
+                else if(ordenarPrecio.ToLower().Equals("des"))
+                {
+                    evento = evento.OrderByDescending(item => item.precioEntrada).ToList();
+                }
             }
-        }
-
-        //Ordenar por genero y precio
-        [HttpGet("genero/{genero}/precio/{ascendente}")]
-        public List<EventoEntity> GetAll(string genero, Boolean ascendente)
-        {
-            var evento = _evento.GetAll();
-            evento = evento.Where(item => item.categoria.ToLower().Equals(genero.ToLower())).ToList();
-            if (ascendente == true)
-            {
-                return evento.OrderBy(item => item.precioEntrada).ToList();
-            }
-            else
-            {
-                return evento.OrderByDescending(item => item.precioEntrada).ToList();
-            }
+            return evento;
         }
 
         // GET by Id action
