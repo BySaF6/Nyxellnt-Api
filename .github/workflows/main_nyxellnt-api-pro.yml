@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'nyxellnt-api-pro'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_12F64490D16946BB95BBDDF0C0B525FA }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FEBE9A8C29CD4F678CDB5520CF288FEA }}
           package: .
