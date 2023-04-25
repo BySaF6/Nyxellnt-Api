@@ -13,5 +13,7 @@ public class EventoEntity
     public string fecha { get; set; }
     public decimal precioEntrada { get; set; }
     public int stock { get; set; }
+    public decimal precioEntradaVip { get; set; }
+    public int stockVip { get; set; }
     public string categoria { get; set; }
 }

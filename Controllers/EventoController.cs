@@ -16,7 +16,7 @@ namespace NyxellntAPI.Controllers
 
         // GET todos y por filtro
         [HttpGet]
-        public List<EventoEntity> GetAll([FromQuery] string genero, [FromQuery] string ordenarPrecio)
+        public List<EventoEntity> GetAll([FromQuery] string genero, [FromQuery] string ordenarPrecio, [FromQuery] string ordenarPrecioVip)
         {
             var evento = _evento.GetAll();
             if(genero != null){
@@ -30,6 +30,15 @@ namespace NyxellntAPI.Controllers
                 else if(ordenarPrecio.ToLower().Equals("des"))
                 {
                     evento = evento.OrderByDescending(item => item.precioEntrada).ToList();
+                }
+            } else if(ordenarPrecioVip != null){
+                if(ordenarPrecioVip.ToLower().Equals("asc"))
+                {
+                    evento = evento.OrderBy(item => item.precioEntradaVip).ToList();
+                }
+                else if(ordenarPrecioVip.ToLower().Equals("des"))
+                {
+                    evento = evento.OrderByDescending(item => item.precioEntradaVip).ToList();
                 }
             }
             return evento;
