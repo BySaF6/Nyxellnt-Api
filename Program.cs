@@ -15,7 +15,7 @@ builder.Services.AddTransient<NyxellntDb>();
 //Evento
 builder.Services.AddTransient<EventoServiceInterface, EventoService>();
 //Operacion
-builder.Services.AddTransient<OperacionServiceInterface, OperacionService>();
+builder.Services.AddTransient<OperacionEntradasServiceInterface, OperacionEntradasService>();
 //Usuario
 builder.Services.AddTransient<UsuarioServiceInterface, UsuarioService>();
 
