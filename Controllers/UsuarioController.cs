@@ -29,6 +29,23 @@ namespace pruebaApi01.Controllers
             return usuario;
         }
 
+        // GET by Email action
+        [HttpGet("{email}, {password}")]
+        public Boolean GetByEmail(string email, string password)
+        {
+            var usuario = _usuario.GetByEmail(email);
+            if (usuario == null)
+            {
+                return false;
+            }
+            if (usuario.password == password)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         // // POST action
         [HttpPost]
         public ActionResult Create(UsuarioEntity usuario)
