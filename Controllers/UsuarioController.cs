@@ -1,5 +1,10 @@
 
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 
 namespace pruebaApi01.Controllers
 {
@@ -8,10 +13,63 @@ namespace pruebaApi01.Controllers
     [Route("[controller]")]
     public class UsuarioController : ControllerBase
     {
+        public IConfiguration _configuration;
         private readonly UsuarioServiceInterface _usuario;
-        public UsuarioController(UsuarioServiceInterface usuario)
+        public UsuarioController(UsuarioServiceInterface usuario, IConfiguration configuration)
         {
             _usuario = usuario;
+            _configuration = configuration;
+        }
+
+        [HttpPost]
+        [Route("login")]
+        public dynamic IniciarSesion([FromBody] Object optData){
+            var data = JsonConvert.DeserializeObject<dynamic>(optData.ToString());
+
+            int id = data.id;
+            string email = data.email.ToString();
+            string password = data.password.ToString();
+
+            UsuarioEntity usuario = _usuario.Get(id);
+
+            if(usuario == null){
+                return new
+                {
+                    success = false,
+                    message = "Credenciales incorrectas",
+                    result = ""
+                };
+            }
+
+            var jwt = _configuration.GetSection("Jwt").Get<Jwt>();
+
+            var claims = new []
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, jwt.Subject),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
+                new Claim("id", usuario.idUsuario.ToString()),
+                new Claim("usuario", usuario.nombre),
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt.Key));
+            var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                jwt.Issuer,
+                jwt.Audience,
+                claims,
+                expires: DateTime.Now.AddMinutes(60),
+                signingCredentials: signIn
+            );
+
+            return new
+            {
+                success = true,
+                message = "Éxito",
+                result = new JwtSecurityTokenHandler().WriteToken(token)
+            };
+
         }
 
         // GET all action
