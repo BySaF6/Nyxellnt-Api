@@ -49,17 +49,24 @@ namespace pruebaApi01.Controllers
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
                 new Claim("id", usuario.idUsuario.ToString()),
+                new Claim("rol", usuario.rol),
                 new Claim("usuario", usuario.nombre),
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt.Key));
             var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
+
+            var timeOut = 60;
+            if(usuario.rol == "Admin"){
+                timeOut = 1440;
+            }
+
             var token = new JwtSecurityToken(
                 jwt.Issuer,
                 jwt.Audience,
                 claims,
-                expires: DateTime.Now.AddMinutes(60),
+                expires: DateTime.Now.AddMinutes(timeOut),
                 signingCredentials: signIn
             );
 
