@@ -5,10 +5,10 @@ namespace pruebaApi01.Controllers
 
     [ApiController]
     [Route("[controller]")]
-    public class OperacionController : ControllerBase
+    public class OperacionEntradasController : ControllerBase
     {
         private readonly OperacionEntradasServiceInterface _operacionEntradas;
-        public OperacionController(OperacionEntradasServiceInterface operacionEntradas)
+        public OperacionEntradasController(OperacionEntradasServiceInterface operacionEntradas)
         {
             _operacionEntradas = operacionEntradas;
         }
@@ -77,7 +77,5 @@ namespace pruebaApi01.Controllers
         _operacionEntradas.Update(operacionEntradasEntity);
         return NoContent();
     }
-
-
 }
 }

@@ -21,7 +21,7 @@ namespace NyxellntAPI.Migrations
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<int>(
-                name: "idEvento",
+                name: "idFestival",
                 table: "Operaciones",
                 type: "int",
                 nullable: false,
@@ -43,7 +43,7 @@ namespace NyxellntAPI.Migrations
                 oldType: "int");
 
             migrationBuilder.AlterColumn<string>(
-                name: "idEvento",
+                name: "idFestival",
                 table: "Operaciones",
                 type: "nvarchar(max)",
                 nullable: true,

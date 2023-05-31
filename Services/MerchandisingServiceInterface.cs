@@ -1,6 +1,6 @@
 public interface MerchandisingServiceInterface
 {
-    // public void listarEventoExtendido();
+    // public void listarFestivalExtendido();
     public List<MerchandisingEntity> GetAll();
     public MerchandisingEntity Get(int id);
     public void Add(MerchandisingEntity merchandising);

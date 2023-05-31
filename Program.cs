@@ -15,8 +15,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<NyxellntDb>();
-//Evento
-builder.Services.AddTransient<EventoServiceInterface, EventoService>();
+//Festival
+builder.Services.AddTransient<FestivalServiceInterface, FestivalService>();
 //Operacion
 builder.Services.AddTransient<OperacionEntradasServiceInterface, OperacionEntradasService>();
 //Usuario
@@ -52,16 +52,6 @@ var app = builder.Build();
 
 app.UseCors("frontend");
 
-/*
-static void configure(IApplicationBuilder app, IWebHostEnvironment env)
-{
-    using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-    {
-        var context = serviceScope.ServiceProvider.GetRequiredService<NyxellntDb>();
-        context.Database.Migrate();
-    }
-}
-*/
 // Configure the HTTP request pipeline.
 app.UseSwagger();
 app.UseSwaggerUI();

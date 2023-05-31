@@ -25,18 +25,18 @@ namespace NyxellntAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("EventoEntity", b =>
+            modelBuilder.Entity("FestivalEntity", b =>
                 {
-                    b.Property<int>("idEvento")
+                    b.Property<int>("idFestival")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idEvento"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idFestival"));
 
-                    b.Property<string>("cantante")
+                    b.Property<string>("artistas")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("categoria")
+                    b.Property<string>("mes")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("descripcion")
@@ -57,9 +57,9 @@ namespace NyxellntAPI.Migrations
                     b.Property<int>("stock")
                         .HasColumnType("int");
 
-                    b.HasKey("idEvento");
+                    b.HasKey("idFestival");
 
-                    b.ToTable("Eventos");
+                    b.ToTable("Festivales");
                 });
 
             modelBuilder.Entity("OperacionEntity", b =>
@@ -73,7 +73,7 @@ namespace NyxellntAPI.Migrations
                     b.Property<int?>("UsuarioEntityidUsuario")
                         .HasColumnType("int");
 
-                    b.Property<int?>("eventoCompradoidEvento")
+                    b.Property<int?>("festivalCompradoidFestival")
                         .HasColumnType("int");
 
                     b.Property<string>("fechaCompra")
@@ -89,7 +89,7 @@ namespace NyxellntAPI.Migrations
 
                     b.HasIndex("UsuarioEntityidUsuario");
 
-                    b.HasIndex("eventoCompradoidEvento");
+                    b.HasIndex("festivalCompradoidFestival");
 
                     b.ToTable("Operaciones");
                 });
@@ -122,19 +122,19 @@ namespace NyxellntAPI.Migrations
             modelBuilder.Entity("OperacionEntity", b =>
                 {
                     b.HasOne("UsuarioEntity", null)
-                        .WithMany("eventosComprados")
+                        .WithMany("festivalsComprados")
                         .HasForeignKey("UsuarioEntityidUsuario");
 
-                    b.HasOne("EventoEntity", "eventoComprado")
+                    b.HasOne("FestivalEntity", "festivalComprado")
                         .WithMany()
-                        .HasForeignKey("eventoCompradoidEvento");
+                        .HasForeignKey("festivalCompradoidFestival");
 
-                    b.Navigation("eventoComprado");
+                    b.Navigation("festivalComprado");
                 });
 
             modelBuilder.Entity("UsuarioEntity", b =>
                 {
-                    b.Navigation("eventosComprados");
+                    b.Navigation("festivalsComprados");
                 });
 #pragma warning restore 612, 618
         }

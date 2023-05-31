@@ -15,14 +15,14 @@ namespace NyxellntAPI.Migrations
 
             migrationBuilder.AddColumn<decimal>(
                 name: "precioEntradaVip",
-                table: "Eventos",
+                table: "Festivales",
                 type: "decimal(18,2)",
                 nullable: false,
                 defaultValue: 0m);
 
             migrationBuilder.AddColumn<int>(
                 name: "stockVip",
-                table: "Eventos",
+                table: "Festivales",
                 type: "int",
                 nullable: false,
                 defaultValue: 0);
@@ -33,7 +33,7 @@ namespace NyxellntAPI.Migrations
                 {
                     idMerchandising = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    idEvento = table.Column<int>(type: "int", nullable: false),
+                    idFestival = table.Column<int>(type: "int", nullable: false),
                     tipoProducto = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     nombreProducto = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     precioProducto = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -51,7 +51,7 @@ namespace NyxellntAPI.Migrations
                 {
                     idOperacionEntradas = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    idEvento = table.Column<int>(type: "int", nullable: false),
+                    idFestival = table.Column<int>(type: "int", nullable: false),
                     idUsuario = table.Column<int>(type: "int", nullable: false),
                     numEntradasCompradas = table.Column<int>(type: "int", nullable: false),
                     precioTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -66,9 +66,9 @@ namespace NyxellntAPI.Migrations
                 name: "OperacionesProductos",
                 columns: table => new
                 {
-                    idOperacionProductos = table.Column<int>(type: "int", nullable: false)
+                    idOperacionMerchandising = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    idEvento = table.Column<int>(type: "int", nullable: false),
+                    idFestival = table.Column<int>(type: "int", nullable: false),
                     idProducto = table.Column<int>(type: "int", nullable: false),
                     idUsuario = table.Column<int>(type: "int", nullable: false),
                     numProductosComprados = table.Column<int>(type: "int", nullable: false),
@@ -77,7 +77,7 @@ namespace NyxellntAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OperacionesProductos", x => x.idOperacionProductos);
+                    table.PrimaryKey("PK_OperacionesProductos", x => x.idOperacionMerchandising);
                 });
         }
 
@@ -95,11 +95,11 @@ namespace NyxellntAPI.Migrations
 
             migrationBuilder.DropColumn(
                 name: "precioEntradaVip",
-                table: "Eventos");
+                table: "Festivales");
 
             migrationBuilder.DropColumn(
                 name: "stockVip",
-                table: "Eventos");
+                table: "Festivales");
 
             migrationBuilder.CreateTable(
                 name: "Operaciones",
@@ -108,7 +108,7 @@ namespace NyxellntAPI.Migrations
                     idOperacion = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     fechaCompra = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    idEvento = table.Column<int>(type: "int", nullable: false),
+                    idFestival = table.Column<int>(type: "int", nullable: false),
                     idUsuario = table.Column<int>(type: "int", nullable: false),
                     numEntradasCompradas = table.Column<int>(type: "int", nullable: false),
                     precioTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false)

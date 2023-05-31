@@ -19,17 +19,17 @@ namespace NyxellntAPI.Controllers
         public List<MerchandisingEntity> GetAll()
         {
             var merchandising = _merchandising.GetAll();
-            // if(genero != null){
-            //     evento = evento.Where(item => item.categoria.ToLower().Equals(genero.ToLower())).ToList();
+            // if(mes != null){
+            //     festival = festival.Where(item => item.mes.ToLower().Equals(mes.ToLower())).ToList();
             // }
             // if(ordenarPrecio != null){
             //     if(ordenarPrecio.ToLower().Equals("asc"))
             //     {
-            //         evento = evento.OrderBy(item => item.precioEntrada).ToList();
+            //         festival = festival.OrderBy(item => item.precioEntrada).ToList();
             //     }
             //     else if(ordenarPrecio.ToLower().Equals("des"))
             //     {
-            //         evento = evento.OrderByDescending(item => item.precioEntrada).ToList();
+            //         festival = festival.OrderByDescending(item => item.precioEntrada).ToList();
             //     }
             // }
             return merchandising;
@@ -51,7 +51,7 @@ namespace NyxellntAPI.Controllers
         public ActionResult Create(MerchandisingEntity merchandisingEntity)
         {
             _merchandising.Add(merchandisingEntity);
-            return CreatedAtAction(nameof(Get), new { id = merchandisingEntity.idEvento }, merchandisingEntity);
+            return CreatedAtAction(nameof(Get), new { id = merchandisingEntity.idFestival }, merchandisingEntity);
         }
 
         // DELETE action

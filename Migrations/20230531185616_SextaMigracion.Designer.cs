@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NyxellntAPI.Entities;
 
@@ -10,9 +11,11 @@ using NyxellntAPI.Entities;
 namespace NyxellntAPI.Migrations
 {
     [DbContext(typeof(NyxellntDb))]
-    partial class NyxellntDbModelSnapshot : ModelSnapshot
+    [Migration("20230531185616_SextaMigracion")]
+    partial class SextaMigracion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
