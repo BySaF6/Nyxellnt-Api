@@ -69,7 +69,7 @@ namespace NyxellntAPI.Migrations
                     idOperacionMerchandising = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     idFestival = table.Column<int>(type: "int", nullable: false),
-                    idProducto = table.Column<int>(type: "int", nullable: false),
+                    idMerchandising = table.Column<int>(type: "int", nullable: false),
                     idUsuario = table.Column<int>(type: "int", nullable: false),
                     numProductosComprados = table.Column<int>(type: "int", nullable: false),
                     precioTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),

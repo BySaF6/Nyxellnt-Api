@@ -146,7 +146,7 @@ namespace NyxellntAPI.Migrations
                     b.Property<int>("idFestival")
                         .HasColumnType("int");
 
-                    b.Property<int>("idProducto")
+                    b.Property<int>("idMerchandising")
                         .HasColumnType("int");
 
                     b.Property<int>("idUsuario")

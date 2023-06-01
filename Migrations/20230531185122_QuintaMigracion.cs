@@ -16,11 +16,11 @@ namespace NyxellntAPI.Migrations
 
             migrationBuilder.RenameTable(
                 name: "Festivales",
-                newName: "Eventos");
+                newName: "Festivales");
 
             migrationBuilder.AddPrimaryKey(
-                name: "PK_Eventos",
-                table: "Eventos",
+                name: "PK_Festivales",
+                table: "Festivales",
                 column: "idFestival");
         }
 
@@ -28,11 +28,11 @@ namespace NyxellntAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropPrimaryKey(
-                name: "PK_Eventos",
-                table: "Eventos");
+                name: "PK_Festivales",
+                table: "Festivales");
 
             migrationBuilder.RenameTable(
-                name: "Eventos",
+                name: "Festivales",
                 newName: "Festivales");
 
             migrationBuilder.AddPrimaryKey(
