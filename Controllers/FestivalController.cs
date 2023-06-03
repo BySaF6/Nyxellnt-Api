@@ -16,29 +16,20 @@ namespace NyxellntAPI.Controllers
 
         // GET todos y por filtro
         [HttpGet]
-        public List<FestivalEntity> GetAll([FromQuery] string mes, [FromQuery] string ordenarPrecio, [FromQuery] string ordenarPrecioVip)
+        public List<FestivalEntity> GetAll([FromQuery] string mes, [FromQuery] string ordenarFecha)
         {
             var festival = _festival.GetAll();
             if(mes != null){
                 festival = festival.Where(item => item.mes.ToLower().Equals(mes.ToLower())).ToList();
             }
-            if(ordenarPrecio != null){
-                if(ordenarPrecio.ToLower().Equals("asc"))
+            if(ordenarFecha != null){
+                if(ordenarFecha.ToLower().Equals("asc"))
                 {
-                    festival = festival.OrderBy(item => item.precioEntrada).ToList();
+                    festival = festival.OrderBy(item => DateTime.Parse(item.fecha)).ToList();
                 }
-                else if(ordenarPrecio.ToLower().Equals("des"))
+                else if(ordenarFecha.ToLower().Equals("des"))
                 {
-                    festival = festival.OrderByDescending(item => item.precioEntrada).ToList();
-                }
-            } else if(ordenarPrecioVip != null){
-                if(ordenarPrecioVip.ToLower().Equals("asc"))
-                {
-                    festival = festival.OrderBy(item => item.precioEntradaVip).ToList();
-                }
-                else if(ordenarPrecioVip.ToLower().Equals("des"))
-                {
-                    festival = festival.OrderByDescending(item => item.precioEntradaVip).ToList();
+                    festival = festival.OrderByDescending(item => DateTime.Parse(item.fecha)).ToList();
                 }
             }
             return festival;
