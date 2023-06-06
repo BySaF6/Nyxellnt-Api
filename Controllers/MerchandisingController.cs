@@ -14,24 +14,24 @@ namespace NyxellntAPI.Controllers
             _merchandising = merchandising;
         }
 
-        // GET todos y por filtro
+       // GET todos y por filtro
         [HttpGet]
-        public List<MerchandisingEntity> GetAll()
+        public List<MerchandisingEntity> GetAll([FromQuery] string tipoProducto, [FromQuery] string precioProducto)
         {
             var merchandising = _merchandising.GetAll();
-            // if(mes != null){
-            //     festival = festival.Where(item => item.mes.ToLower().Equals(mes.ToLower())).ToList();
-            // }
-            // if(ordenarPrecio != null){
-            //     if(ordenarPrecio.ToLower().Equals("asc"))
-            //     {
-            //         festival = festival.OrderBy(item => item.precioEntrada).ToList();
-            //     }
-            //     else if(ordenarPrecio.ToLower().Equals("des"))
-            //     {
-            //         festival = festival.OrderByDescending(item => item.precioEntrada).ToList();
-            //     }
-            // }
+            if(tipoProducto != null){
+                merchandising = merchandising.Where(item => item.tipoProducto.ToLower().Equals(tipoProducto.ToLower())).ToList();
+            }
+            if(precioProducto != null){
+                if(precioProducto.ToLower().Equals("asc"))
+                {
+                    merchandising = merchandising.OrderBy(item => item.precioProducto).ToList();
+                }
+                else if(precioProducto.ToLower().Equals("des"))
+                {
+                    merchandising = merchandising.OrderByDescending(item => item.precioProducto).ToList();
+                }
+            }
             return merchandising;
         }
 
@@ -51,7 +51,7 @@ namespace NyxellntAPI.Controllers
         public ActionResult Create(MerchandisingEntity merchandisingEntity)
         {
             _merchandising.Add(merchandisingEntity);
-            return CreatedAtAction(nameof(Get), new { id = merchandisingEntity.idFestival }, merchandisingEntity);
+            return CreatedAtAction(nameof(Get), new { id = merchandisingEntity.idMerchandising }, merchandisingEntity);
         }
 
         // DELETE action

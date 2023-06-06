@@ -16,5 +16,5 @@ public class FestivalEntity
     public decimal precioEntradaVip { get; set; }
     public int stockVip { get; set; }
     public string mes { get; set; }
-    public byte[] imagen { get; set; }
+    public string imagen { get; set; }
 }

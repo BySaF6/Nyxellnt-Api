@@ -12,5 +12,5 @@ public class MerchandisingEntity
     public decimal precioProducto { get; set; }
     public string descripcionProducto { get; set; }
     public int stockProducto { get; set; }
-    public byte[] imagen { get; set; }
+    public string imagen { get; set; }
 }

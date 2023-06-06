@@ -10,5 +10,5 @@ public class UsuarioEntity
     public string email { get; set; }
     public string password { get; set; }
     public string rol { get; set;}
-    public byte[] imagen { get; set; }
+    public string imagen { get; set; }
 }
