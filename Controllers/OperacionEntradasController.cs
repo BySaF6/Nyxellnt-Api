@@ -20,12 +20,21 @@ namespace pruebaApi01.Controllers
 
         //Ordenar por fecha de compra ascendente o descendente
         [HttpGet("usuario/{idUsuario}")]
-        public List<OperacionEntradasEntity> GetAll(int idUsuario, [FromQuery] string ordenarFecha)
+        public List<OperacionEntradasEntity> GetAll(int idUsuario, [FromQuery] string ordenarPrecio, [FromQuery] string ordenarFecha)
         {
             var operacionesEntradas = _operacionEntradas.GetAll();
             operacionesEntradas = operacionesEntradas.Where(item => item.idUsuario == idUsuario).ToList();
 
-            if (ordenarFecha != null)
+            if(ordenarPrecio != null){
+                if(ordenarPrecio.ToLower().Equals("asc"))
+                {
+                    operacionesEntradas = operacionesEntradas.OrderBy(item => item.precioTotalEntradas).ToList();
+                }
+                else if(ordenarPrecio.ToLower().Equals("des"))
+                {
+                    operacionesEntradas = operacionesEntradas.OrderByDescending(item => item.precioTotalEntradas).ToList();
+                }
+            } else if (ordenarFecha != null)
             {
                 if (ordenarFecha.ToLower().Equals("asc"))
                 {
