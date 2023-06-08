@@ -3,8 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Microsoft.Extensions.Logging;
-// using Microsoft.Extensions.Logging.File;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,7 +50,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 });
 
 //LOGS
-// builder.Services.AddLogging(loggingBuilder =>{loggingBuilder.AddFile("logs/logs.txt");});
+builder.Services.AddLogging(loggingBuilder =>{loggingBuilder.AddFile("logs/logs.txt");});
 
 
 var app = builder.Build();
