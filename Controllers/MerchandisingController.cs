@@ -9,6 +9,7 @@ namespace NyxellntAPI.Controllers
     public class MerchandisingController : ControllerBase
     {
         private readonly MerchandisingServiceInterface _merchandising;
+        private readonly ILogger<MerchandisingController> _logger;
         public MerchandisingController(MerchandisingServiceInterface merchandising)
         {
             _merchandising = merchandising;

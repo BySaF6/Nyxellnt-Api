@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.Extensions.Logging;
+// using Microsoft.Extensions.Logging.File;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,8 +37,10 @@ builder.Services.AddCors(options =>
 builder.Services.AddMvc().AddMvcOptions(e => e.EnableEndpointRouting = false);
 
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => {
-    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters{
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    {
         ValidateIssuer = true,
         ValidateAudience = true,
         ValidateLifetime = true,
@@ -46,6 +50,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
     };
 });
+
+//LOGS
+// builder.Services.AddLogging(loggingBuilder =>{loggingBuilder.AddFile("logs/logs.txt");});
 
 
 var app = builder.Build();

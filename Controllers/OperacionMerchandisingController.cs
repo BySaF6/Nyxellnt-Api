@@ -8,6 +8,7 @@ namespace pruebaApi01.Controllers
     public class OperacionMerchandisingController : ControllerBase
     {
         private readonly OperacionMerchandisingServiceInterface _operacionMerchandising;
+        private readonly ILogger<OperacionMerchandisingController> _logger;
         public OperacionMerchandisingController(OperacionMerchandisingServiceInterface operacionMerchandising)
         {
             _operacionMerchandising = operacionMerchandising;

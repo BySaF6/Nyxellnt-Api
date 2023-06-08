@@ -9,6 +9,7 @@ namespace NyxellntAPI.Controllers
     public class FestivalController : ControllerBase
     {
         private readonly FestivalServiceInterface _festival;
+        private readonly ILogger<FestivalController> _logger;
         public FestivalController(FestivalServiceInterface festival)
         {
             _festival = festival;

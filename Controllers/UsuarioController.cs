@@ -15,6 +15,7 @@ namespace pruebaApi01.Controllers
     {
         public IConfiguration _configuration;
         private readonly UsuarioServiceInterface _usuario;
+        private readonly ILogger<UsuarioController> _logger;
         public UsuarioController(UsuarioServiceInterface usuario, IConfiguration configuration)
         {
             _usuario = usuario;

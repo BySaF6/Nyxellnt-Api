@@ -8,6 +8,7 @@ namespace pruebaApi01.Controllers
     public class OperacionEntradasController : ControllerBase
     {
         private readonly OperacionEntradasServiceInterface _operacionEntradas;
+        private readonly ILogger<OperacionEntradasController> _logger;
         public OperacionEntradasController(OperacionEntradasServiceInterface operacionEntradas)
         {
             _operacionEntradas = operacionEntradas;

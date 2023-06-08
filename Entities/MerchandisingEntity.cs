@@ -6,7 +6,7 @@ public class MerchandisingEntity
 {
     [Key]
     public int idMerchandising { get; set; }
-    public int idFestival { get; set; }
+    public string nombreFestival { get; set; }
     public string tipoProducto { get; set; }
     public string nombreProducto { get; set; }
     public decimal precioProducto { get; set; }
