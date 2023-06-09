@@ -26,7 +26,7 @@ namespace NyxellntAPI.Controllers
             }
             if (ordenarFecha != null)
             {
-                if (ordenarFecha == "asc")
+                if (ordenarFecha == "des")
                 {
                     festival.Sort((a, b) =>
                     {
@@ -40,7 +40,7 @@ namespace NyxellntAPI.Controllers
                         return finalDateB.CompareTo(finalDateA);
                     });
                 }
-                else if (ordenarFecha == "des")
+                else if (ordenarFecha == "asc")
                 {
                     festival.Sort((a, b) =>
                     {
