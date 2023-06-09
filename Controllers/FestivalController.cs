@@ -20,18 +20,48 @@ namespace NyxellntAPI.Controllers
         public List<FestivalEntity> GetAll([FromQuery] string mes, [FromQuery] string ordenarFecha)
         {
             var festival = _festival.GetAll();
-            if(mes != null){
+            if (mes != null)
+            {
                 festival = festival.Where(item => item.mes.ToLower().Equals(mes.ToLower())).ToList();
             }
-            if(ordenarFecha != null){
-                if(ordenarFecha.ToLower().Equals("asc"))
+            if (ordenarFecha != null)
+            {
+                if (ordenarFecha == "asc")
                 {
-                    festival = festival.OrderBy(item => DateTime.Parse(item.fecha)).ToList();
+                    festival.Sort((a, b) =>
+                    {
+                        string[] dateA = a.fecha.Split("-");
+                        DateTime finalDateA = new DateTime(int.Parse(dateA[2]), int.Parse(dateA[1]) - 1, int.Parse(dateA[0]));
+                        string[] dateB = b.fecha.Split("-");
+                        DateTime finalDateB = new DateTime(int.Parse(dateB[2]), int.Parse(dateB[1]) - 1, int.Parse(dateB[0]));
+
+                        Console.WriteLine(finalDateA);
+
+                        return finalDateB.CompareTo(finalDateA);
+                    });
                 }
-                else if(ordenarFecha.ToLower().Equals("des"))
+                else if (ordenarFecha == "des")
                 {
-                    festival = festival.OrderByDescending(item => DateTime.Parse(item.fecha)).ToList();
+                    festival.Sort((a, b) =>
+                    {
+                        string[] dateA = a.fecha.Split("-");
+                        DateTime finalDateA = new DateTime(int.Parse(dateA[2]), int.Parse(dateA[1]) - 1, int.Parse(dateA[0]));
+                        string[] dateB = b.fecha.Split("-");
+                        DateTime finalDateB = new DateTime(int.Parse(dateB[2]), int.Parse(dateB[1]) - 1, int.Parse(dateB[0]));
+
+                        return finalDateA.CompareTo(finalDateB);
+                    });
                 }
+
+
+                // if(ordenarFecha.ToLower().Equals("asc"))
+                // {
+                //     festival = festival.OrderBy(item => DateTime.Parse(item.fecha)).ToList();
+                // }
+                // else if(ordenarFecha.ToLower().Equals("des"))
+                // {
+                //     festival = festival.OrderByDescending(item => DateTime.Parse(item.fecha)).ToList();
+                // }
             }
             return festival;
         }
