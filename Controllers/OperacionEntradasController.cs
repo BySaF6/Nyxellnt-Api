@@ -36,13 +36,31 @@ namespace pruebaApi01.Controllers
                 }
             } else if (ordenarFecha != null)
             {
-                if (ordenarFecha.ToLower().Equals("asc"))
+                if (ordenarFecha == "des")
                 {
-                    operacionesEntradas = operacionesEntradas.OrderBy(f => DateTime.Parse(f.fechaCompra)).ToList();
+                    operacionesEntradas.Sort((a, b) =>
+                    {
+                        string[] dateA = a.fechaCompra.Split("/");
+                        DateTime finalDateA = new DateTime(int.Parse(dateA[2]), int.Parse(dateA[1]) - 1, int.Parse(dateA[0]));
+                        string[] dateB = b.fechaCompra.Split("/");
+                        DateTime finalDateB = new DateTime(int.Parse(dateB[2]), int.Parse(dateB[1]) - 1, int.Parse(dateB[0]));
+
+                        Console.WriteLine(finalDateA);
+
+                        return finalDateB.CompareTo(finalDateA);
+                    });
                 }
-                else if (ordenarFecha.ToLower().Equals("des"))
+                else if (ordenarFecha == "asc")
                 {
-                    operacionesEntradas = operacionesEntradas.OrderByDescending(f => DateTime.Parse(f.fechaCompra)).ToList();
+                    operacionesEntradas.Sort((a, b) =>
+                    {
+                        string[] dateA = a.fechaCompra.Split("/");
+                        DateTime finalDateA = new DateTime(int.Parse(dateA[2]), int.Parse(dateA[1]) - 1, int.Parse(dateA[0]));
+                        string[] dateB = b.fechaCompra.Split("/");
+                        DateTime finalDateB = new DateTime(int.Parse(dateB[2]), int.Parse(dateB[1]) - 1, int.Parse(dateB[0]));
+
+                        return finalDateA.CompareTo(finalDateB);
+                    });
                 }
             }
             return operacionesEntradas;

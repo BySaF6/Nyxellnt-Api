@@ -52,16 +52,6 @@ namespace NyxellntAPI.Controllers
                         return finalDateA.CompareTo(finalDateB);
                     });
                 }
-
-
-                // if(ordenarFecha.ToLower().Equals("asc"))
-                // {
-                //     festival = festival.OrderBy(item => DateTime.Parse(item.fecha)).ToList();
-                // }
-                // else if(ordenarFecha.ToLower().Equals("des"))
-                // {
-                //     festival = festival.OrderByDescending(item => DateTime.Parse(item.fecha)).ToList();
-                // }
             }
             return festival;
         }
