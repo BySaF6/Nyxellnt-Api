@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NyxellntAPI.Entities;
 
@@ -10,9 +11,11 @@ using NyxellntAPI.Entities;
 namespace NyxellntAPI.Migrations
 {
     [DbContext(typeof(NyxellntDb))]
-    partial class NyxellntDbModelSnapshot : ModelSnapshot
+    [Migration("20230606173928_MigracionImagen")]
+    partial class MigracionImagen
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,10 +81,10 @@ namespace NyxellntAPI.Migrations
                     b.Property<string>("descripcionProducto")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("imagen")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("idFestival")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nombreFestival")
+                    b.Property<string>("imagen")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("nombreProducto")

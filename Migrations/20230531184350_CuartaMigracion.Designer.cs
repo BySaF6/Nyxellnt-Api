@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NyxellntAPI.Entities;
 
@@ -10,9 +11,11 @@ using NyxellntAPI.Entities;
 namespace NyxellntAPI.Migrations
 {
     [DbContext(typeof(NyxellntDb))]
-    partial class NyxellntDbModelSnapshot : ModelSnapshot
+    [Migration("20230531184350_CuartaMigracion")]
+    partial class CuartaMigracion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,8 +41,8 @@ namespace NyxellntAPI.Migrations
                     b.Property<string>("fecha")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("imagen")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("imagen")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("localidad")
                         .HasColumnType("nvarchar(max)");
@@ -78,11 +81,11 @@ namespace NyxellntAPI.Migrations
                     b.Property<string>("descripcionProducto")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("imagen")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("idFestival")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nombreFestival")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("imagen")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("nombreProducto")
                         .HasColumnType("nvarchar(max)");
@@ -177,8 +180,8 @@ namespace NyxellntAPI.Migrations
                     b.Property<string>("email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("imagen")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("imagen")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("nombre")
                         .HasColumnType("nvarchar(max)");

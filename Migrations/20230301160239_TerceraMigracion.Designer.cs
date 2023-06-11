@@ -24,18 +24,18 @@ namespace NyxellntAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("EventoEntity", b =>
+            modelBuilder.Entity("FestivalEntity", b =>
                 {
-                    b.Property<int>("idEvento")
+                    b.Property<int>("idFestival")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idEvento"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idFestival"));
 
-                    b.Property<string>("cantante")
+                    b.Property<string>("artistas")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("categoria")
+                    b.Property<string>("mes")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("descripcion")
@@ -56,9 +56,9 @@ namespace NyxellntAPI.Migrations
                     b.Property<int>("stock")
                         .HasColumnType("int");
 
-                    b.HasKey("idEvento");
+                    b.HasKey("idFestival");
 
-                    b.ToTable("Eventos");
+                    b.ToTable("Festivales");
                 });
 
             modelBuilder.Entity("OperacionEntity", b =>
@@ -72,7 +72,7 @@ namespace NyxellntAPI.Migrations
                     b.Property<string>("fechaCompra")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("idEvento")
+                    b.Property<int>("idFestival")
                         .HasColumnType("int");
 
                     b.Property<int>("idUsuario")

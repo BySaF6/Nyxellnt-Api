@@ -11,23 +11,23 @@ namespace NyxellntAPI.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Eventos",
+                name: "Festivales",
                 columns: table => new
                 {
-                    idEvento = table.Column<int>(type: "int", nullable: false)
+                    idFestival = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     nombre = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    cantante = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    artistas = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     descripcion = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     localidad = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     fecha = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     precioEntrada = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     stock = table.Column<int>(type: "int", nullable: false),
-                    categoria = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    mes = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Eventos", x => x.idEvento);
+                    table.PrimaryKey("PK_Festivales", x => x.idFestival);
                 });
 
             migrationBuilder.CreateTable(
@@ -52,7 +52,7 @@ namespace NyxellntAPI.Migrations
                 {
                     idOperacion = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    eventoCompradoidEvento = table.Column<int>(type: "int", nullable: true),
+                    festivalCompradoidFestival = table.Column<int>(type: "int", nullable: true),
                     numEntradasCompradas = table.Column<int>(type: "int", nullable: false),
                     precioTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     fechaCompra = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -62,10 +62,10 @@ namespace NyxellntAPI.Migrations
                 {
                     table.PrimaryKey("PK_Operaciones", x => x.idOperacion);
                     table.ForeignKey(
-                        name: "FK_Operaciones_Eventos_eventoCompradoidEvento",
-                        column: x => x.eventoCompradoidEvento,
-                        principalTable: "Eventos",
-                        principalColumn: "idEvento");
+                        name: "FK_Operaciones_Festivales_festivalCompradoidFestival",
+                        column: x => x.festivalCompradoidFestival,
+                        principalTable: "Festivales",
+                        principalColumn: "idFestival");
                     table.ForeignKey(
                         name: "FK_Operaciones_Usuarios_UsuarioEntityidUsuario",
                         column: x => x.UsuarioEntityidUsuario,
@@ -74,9 +74,9 @@ namespace NyxellntAPI.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Operaciones_eventoCompradoidEvento",
+                name: "IX_Operaciones_festivalCompradoidFestival",
                 table: "Operaciones",
-                column: "eventoCompradoidEvento");
+                column: "festivalCompradoidFestival");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Operaciones_UsuarioEntityidUsuario",
@@ -91,7 +91,7 @@ namespace NyxellntAPI.Migrations
                 name: "Operaciones");
 
             migrationBuilder.DropTable(
-                name: "Eventos");
+                name: "Festivales");
 
             migrationBuilder.DropTable(
                 name: "Usuarios");

@@ -11,7 +11,7 @@ namespace NyxellntAPI.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Operaciones_Eventos_eventoCompradoidEvento",
+                name: "FK_Operaciones_Festivales_festivalCompradoidFestival",
                 table: "Operaciones");
 
             migrationBuilder.DropForeignKey(
@@ -19,7 +19,7 @@ namespace NyxellntAPI.Migrations
                 table: "Operaciones");
 
             migrationBuilder.DropIndex(
-                name: "IX_Operaciones_eventoCompradoidEvento",
+                name: "IX_Operaciones_festivalCompradoidFestival",
                 table: "Operaciones");
 
             migrationBuilder.DropIndex(
@@ -31,11 +31,11 @@ namespace NyxellntAPI.Migrations
                 table: "Operaciones");
 
             migrationBuilder.DropColumn(
-                name: "eventoCompradoidEvento",
+                name: "festivalCompradoidFestival",
                 table: "Operaciones");
 
             migrationBuilder.AddColumn<string>(
-                name: "idEvento",
+                name: "idFestival",
                 table: "Operaciones",
                 type: "nvarchar(max)",
                 nullable: true);
@@ -51,7 +51,7 @@ namespace NyxellntAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "idEvento",
+                name: "idFestival",
                 table: "Operaciones");
 
             migrationBuilder.DropColumn(
@@ -65,15 +65,15 @@ namespace NyxellntAPI.Migrations
                 nullable: true);
 
             migrationBuilder.AddColumn<int>(
-                name: "eventoCompradoidEvento",
+                name: "festivalCompradoidFestival",
                 table: "Operaciones",
                 type: "int",
                 nullable: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Operaciones_eventoCompradoidEvento",
+                name: "IX_Operaciones_festivalCompradoidFestival",
                 table: "Operaciones",
-                column: "eventoCompradoidEvento");
+                column: "festivalCompradoidFestival");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Operaciones_UsuarioEntityidUsuario",
@@ -81,11 +81,11 @@ namespace NyxellntAPI.Migrations
                 column: "UsuarioEntityidUsuario");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Operaciones_Eventos_eventoCompradoidEvento",
+                name: "FK_Operaciones_Festivales_festivalCompradoidFestival",
                 table: "Operaciones",
-                column: "eventoCompradoidEvento",
-                principalTable: "Eventos",
-                principalColumn: "idEvento");
+                column: "festivalCompradoidFestival",
+                principalTable: "Festivales",
+                principalColumn: "idFestival");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Operaciones_Usuarios_UsuarioEntityidUsuario",

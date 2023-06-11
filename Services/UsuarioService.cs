@@ -11,11 +11,14 @@ public class UsuarioService : UsuarioServiceInterface
 
     public UsuarioEntity Get(int id) => _context.Usuarios.ToList().FirstOrDefault(p => p.idUsuario == id);
 
+    public UsuarioEntity GetByEmail(string email) => _context.Usuarios.ToList().FirstOrDefault(p => p.email.Equals(email));
+
     public void Add(UsuarioEntity usuario)
     {
         _context.Usuarios.Add(usuario);
         _context.SaveChanges();
     }
+
 
     public void Delete(int id)
     {
